@@ -34,6 +34,7 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	clickcd = CLICK_CD_FAST
 	damfactor = 1.1
+	intent_intdamage_factor = 1.15
 	swingdelay = 0
 	icon_state = "inpunch"
 	item_d_type = "blunt"
@@ -44,10 +45,9 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.1
+	damfactor = 1.5
 	clickcd = CLICK_CD_MELEE
 	swingdelay = 8
-	intent_intdamage_factor = 1.35
 	icon_state = "insmash"
 	item_d_type = "blunt"
 
@@ -155,6 +155,7 @@
 	associated_skill = /datum/skill/combat/unarmed
 	throwforce = 12
 	wdefense = 4	//Meant to be used with bracers. Temp for now.
+	intdamage_factor = 1.15
 	wbalance = WBALANCE_NORMAL
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
