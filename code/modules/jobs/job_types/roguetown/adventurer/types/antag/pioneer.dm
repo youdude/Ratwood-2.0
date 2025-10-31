@@ -5,6 +5,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/bandit/pioneer
 	category_tags = list(CTAG_BANDIT)
+	maximum_possible_slots = 3 //they aren't on par with hedge knights SO WHY ARE THEY LIMITED GRAHHHHHHHHHHHH
 
 	subclass_stats = list(
 		STATKEY_INT = 3,
@@ -12,7 +13,7 @@
 		STATKEY_STR = 1,
 		STATKEY_CON = 1,
 		STATKEY_PER = 1,
-		STATKEY_END = 2 //a lot of stats but no any traits, literally
+		STATKEY_WIL = 2 //a lot of stats but no any traits, literally
 	)
 
 /datum/outfit/job/roguetown/bandit/pioneer/pre_equip(mob/living/carbon/human/H)
@@ -48,7 +49,7 @@
 		/obj/item/rogueweapon/pick/steel
 	)
 
-	H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
@@ -75,7 +76,7 @@
 
 /obj/effect/proc_holder/spell/targeted/pioneer/plant_bogtrap_delayed
 	name = "Set Bogtrap (Delayed)"
-	desc = "After 30 seconds, a bogtrap arms beneath your feet."
+	desc = "After 8 seconds, a bogtrap arms beneath your feet."
 	range = 0
 	overlay_state = "trap"
 	releasedrain = 0
