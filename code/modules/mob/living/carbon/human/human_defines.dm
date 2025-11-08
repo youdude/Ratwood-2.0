@@ -121,7 +121,7 @@
 	var/erpprefs = null
 
 	var/list/img_gallery = list()
-
+	var/list/nsfw_img_gallery = list()
 
 	var/nsfw_headshot_link = null
 

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Box, Button, Image, Section, Stack } from 'tgui-core/components';
 
 import { resolveAsset } from '../assets';
@@ -142,21 +142,65 @@ export const ImageGalleryPage = (props) => {
   const { data } = useBackend<ExaminePanelData>();
   const {
     img_gallery,
+    nsfw_img_gallery,
+    is_naked,
   } = data;
-  
+
+  const [galleryMode, setGalleryMode] = useState<'SFW' | 'NSFW'>('SFW');
+
+  const images = galleryMode === 'NSFW'
+    ? nsfw_img_gallery || []
+    : img_gallery || [];
+
   return (
+    <Section
+      title="Image Gallery"
+      scrollable
+      fill
+      preserveWhitespace
+      buttons={
+        <>
+          <Button
+            selected={galleryMode === 'SFW'}
+            bold={galleryMode === 'SFW'}
+            onClick={() => setGalleryMode('SFW')}
+            textAlign="center"
+            minWidth="60px"
+          >
+            SFW
+          </Button>
+          <Button
+            selected={galleryMode === 'NSFW'}
+            bold={galleryMode === 'NSFW'}
+            onClick={() => setGalleryMode('NSFW')}
+            textAlign="center"
+            minWidth="60px"
+            disabled={!is_naked || !nsfw_img_gallery?.length}
+          >
+            NSFW
+          </Button>
+        </>
+      }
+    >
+      {images.length === 0 ? (
+        <Box align="center" color="gray">
+          No images available.
+        </Box>
+      ) : (
         <Stack fill justify="space-evenly">
-            {img_gallery.map((val) => (
-              <Stack.Item grow key={val}>
-                  <Section align="center">
-                  <Image
-                    maxHeight="100%"
-                    maxWidth="100%"
-                    src={resolveAsset(val)}
-                  />
-                  </Section>
-              </Stack.Item>
-            ))}
+          {images.map((val) => (
+            <Stack.Item grow key={val}>
+              <Section align="center">
+                <Image
+                  maxHeight="100%"
+                  maxWidth="100%"
+                  src={resolveAsset(val)}
+                />
+              </Section>
+            </Stack.Item>
+          ))}
         </Stack>
+      )}
+    </Section>
   );
 };

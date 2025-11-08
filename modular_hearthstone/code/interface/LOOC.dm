@@ -13,7 +13,7 @@
 /client/proc/get_looc()
 	var/msg = input(src, "", "looc") as text|null
 	do_looc(msg, FALSE)
-	
+
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
@@ -42,7 +42,7 @@
 	if(is_banned_from(ckey, "LOOC"))
 		to_chat(src, span_danger("I cannot use LOOC (perma muted)."))
 		return
-	
+
 	if(isobserver(mob) && !holder)
 		to_chat(src, span_danger("I cannot use LOOC while dead."))
 		return
@@ -102,4 +102,4 @@
 			else if(speakturf in get_hear(7, sourceturf))
 				to_chat(C, "<font color='["#6699CC"]'><b><span class='prefix'>[prefix]:</span> <EM>[src.mob.name][added_text]:</EM> <span class='message'>[msg]</span></b></font>")
 			else if(is_admin == 1)
-				to_chat(C, "<font color='["#6699CC"]'><b>(R) <span class='prefix'>[prefix]:</span> <EM>[src.mob.name][added_text]:</EM> <span class='message'>[msg]</span></b></font>")
+				to_chat(C, "<font color='["#003458"]'><b>(R) <span class='prefix'>[prefix]:</span> <EM>[src.mob.name][added_text]:</EM> <span class='message'>[msg]</span></b></font>")

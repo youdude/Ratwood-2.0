@@ -41,6 +41,7 @@
 	var/ooc_notes_nsfw
 	var/headshot = ""
 	var/list/img_gallery = list()
+	var/list/nsfw_img_gallery = list()
 	var/char_name
 	var/song_url
 	var/has_song = FALSE
@@ -74,12 +75,13 @@
 		ooc_notes_nsfw = pref.erpprefs
 		headshot = pref.headshot_link
 		img_gallery = pref.img_gallery
+		nsfw_img_gallery = pref.nsfw_img_gallery
 		char_name = pref.real_name
 		song_url = pref.ooc_extra
 		is_vet = viewing.check_agevet()
 		if(!headshot)
 			headshot = "headshot_red.png"
-	
+
 	if(song_url)
 		has_song = TRUE
 
@@ -104,6 +106,7 @@
 		"flavor_text_nsfw" = flavor_text_nsfw,
 		"ooc_notes_nsfw" = ooc_notes_nsfw,
 		"img_gallery" = img_gallery,
+		"nsfw_img_gallery" = nsfw_img_gallery,
 		"is_playing" = is_playing,
 		"has_song" = has_song,
 		"is_vet" = is_vet,
@@ -125,7 +128,7 @@
 	var/artist_name = "Song Artist Hidden"
 	var/song_title
 	var/list/music_extra_data = list()
-	
+
 	C = viewing.client
 
 	if(ishuman(holder))

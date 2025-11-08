@@ -214,6 +214,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/list/img_gallery = list()
 
+	var/list/nsfw_img_gallery = list()
+
 	var/datum/familiar_prefs/familiar_prefs
 
 	var/taur_type = null
@@ -561,6 +563,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<a href='?_src_=prefs;preference=change_artist;task=input'>Change Artist</a>"
 			dat += "<br><B>Image Gallery:</b> <a href='?_src_=prefs;preference=img_gallery;task=input'>Add</a>"
 			dat+= "<a href='?_src_=prefs;preference=clear_gallery;task=input'>Clear Gallery</a>"
+			dat += "<br><B>Nsfw Image Gallery:</b> <a href='?_src_=prefs;preference=nsfw_img_gallery;task=input'>Add</a>"
+			dat+= "<a href='?_src_=prefs;preference=clear_nsfw_gallery;task=input'>Clear Nsfw Gallery</a>"
 			dat += "<br><a href='?_src_=prefs;preference=ooc_preview;task=input'><b>Preview Examine</b></a>"
 
 			dat += "<br><b>Loadout Item I:</b> <a href='?_src_=prefs;preference=loadout_item;task=input'>[loadout ? loadout.name : "None"]</a>"
@@ -1989,6 +1993,34 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					to_chat(user, "<span class='notice'>Successfully added image to gallery.</span>")
 					log_game("[user] has added an image to their gallery: '[new_galleryimg]'.")
 
+				if("nsfw_img_gallery")
+
+					if(nsfw_img_gallery.len >= 3)
+						to_chat(user, "You already have three images in your gallery!")
+						return
+
+					to_chat(user, "<span class='notice'>Please use an image ["<span class='bold'>of your character</span>"] to maintain immersion level. Lastly, ["<span class='bold'>do not use a real life photo or use any image that is less than serious.</span>"]</span>")
+					to_chat(user, "<span class='notice'>If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser.</span>")
+					to_chat(user, "<span class='notice'>Keep in mind that all three images are displayed next to eachother and justified to fill a horizontal rectangle. As such, vertical images work best.</span>")
+					to_chat(user, "<span class='notice'>You can only have a maximum of ["<span class='bold'>THREE IMAGES</span>"] in your gallery at a time.</span>")
+
+					var/new_galleryimg = tgui_input_text(user, "Input the image link (https, hosts: gyazo, discord, lensdump, imgbox, catbox):", "Gallery Image",  encode = FALSE)
+
+					if(new_galleryimg == null)
+						return
+					if(new_galleryimg == "")
+						new_galleryimg = null
+						ShowChoices(user)
+						return
+					if(!valid_headshot_link(user, new_galleryimg))
+						to_chat(user, "<span class='notice'>Invalid image link. Make sure it's a direct link from a valid host (gyazo, discord, lensdump, imgbox, catbox).</span>")
+						new_galleryimg = null
+						ShowChoices(user)
+						return
+					nsfw_img_gallery += new_galleryimg
+					to_chat(user, "<span class='notice'>Successfully added image to nsfw gallery.</span>")
+					log_game("[user] has added an image to their nsfw gallery: '[new_galleryimg]'.")
+
 				if("clear_gallery")
 					if(!img_gallery.len)
 						to_chat(user, "You don't have any images in your gallery to clear!")
@@ -2000,6 +2032,18 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					img_gallery = list()
 					to_chat(user, "<span class='notice'>Successfully cleared image gallery.</span>")
 					log_game("[user] has cleared their image gallery.")
+
+				if("clear_nsfw_gallery")
+					if(!nsfw_img_gallery.len)
+						to_chat(user, "You don't have any images in your nsfw gallery to clear!")
+						return
+					var/dachoice = tgui_alert(user, "Do you really want to clear your nsfw image gallery?", "Clear nsfw Gallery", list("Yae", "Nae"))
+					if(dachoice == "Nae")
+						ShowChoices(user)
+						return
+					nsfw_img_gallery = list()
+					to_chat(user, "<span class='notice'>Successfully cleared their nsfw image gallery.</span>")
+					log_game("[user] has cleared their nsfw image gallery.")
 
 				if("ooc_preview")
 					var/datum/examine_panel/preview_examine_panel = new(user)
@@ -2791,6 +2835,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	character.erpprefs = erpprefs
 
 	character.img_gallery = img_gallery
+
+	character.nsfw_img_gallery = nsfw_img_gallery
 
 	character.ooc_extra = ooc_extra
 
