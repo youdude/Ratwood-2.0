@@ -228,7 +228,7 @@
 			var/combo_list = daily_tools_combos[combo_name]
 			for(var/item_path in combo_list)
 				var/new_item = new item_path()
-				H.mind.special_items[combo_name] = new_item
+				H.mind.special_items += new_item
 
 		// Select three individual bronze/copper items
 		for(var/i in 1 to 3)
