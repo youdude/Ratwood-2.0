@@ -1,4 +1,4 @@
-obj/item/bmbstrap
+/obj/item/bmbstrap
 	name = "Bombdolier"
 	desc = ""
 	icon_state = "bombdolier1"
