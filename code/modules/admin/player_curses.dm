@@ -115,13 +115,20 @@
 		"on crit status",
 		"on behead",
 		"on break wall/door/window",
+		"on cut tree",
 		"on craft",
 		"on sex",
 		"on orgasm",
 		"on bite",
 		"on jump",
+		"on climb",
+		"on swim",
 		"on run",
 		"on walk"
+		"on midnight"
+		"on noon"
+		"on dusk"
+		"on dawn"
 	)
 
 	var/trigger = input(
@@ -135,7 +142,7 @@
 	// ---- Chance ----
 	var/chance = input(
 		src,
-		"Percent chance (1–100):",
+		"Percent chance (1 to 100):",
 		"Chance",
 		100
 	) as null|num
@@ -145,25 +152,30 @@
 
 	// ---- Effect Selection ----
 	var/list/effect_list = list(
-		"buff/debuff",
+		"buff or debuff",
 		"remove trait",
 		"add trait",
 		"add 2u reagent",
 		"max devotion",
 		"zero devotion",
+		"max arousal",
+		"shrink sex organs",
+		"enlarge sex organs",
 		"nauseate",
+		"clothesplosion",
 		"slip",
 		"jail in arcyne walls",
 		"make deadite",
 		"make vampire",
 		"make werewolf",
 		"shock",
-		"set on fire",
+		"add stack of fire",
 		"easy ambush",
 		"difficult ambush",
 		"explode",
 		"nugget",
 		"gib and spawn player controlled mob",
+		"gib and reset body",
 		"gib",
 		"gib and explode"
 	)
@@ -195,57 +207,44 @@
 		effect_args = list("trait" = trait_id)
 
 	// ---- Buff / Debuff selection ----
-	if(effect_proc == "buff/debuff")
-		var/list/debuff_types = subtypesof(/datum/status_effect/debuff)
-		var/list/debuff_choices = list()
-
-		for(var/typepath in debuff_types)
-			var/datum/status_effect/debuff/D = new typepath
-			if(D.id)
-				debuff_choices[D.id] = typepath
-
-		if(!debuff_choices.len)
-			usr << "No debuffs found."
-			return
-
+	if(effect_proc == "buff or debuff")
 		var/debuff_id = input(
 			src,
 			"Select the effect to apply:",
 			"Effect Selection"
-		) as null|anything in debuff_choices
+		) as null|anything in subtypesof(/datum/status_effect/debuff)
 
 		if(!debuff_id) return
 
 		effect_args = list(
-			"debuff_id"  = debuff_id,
-			"debuff_type" = debuff_choices[debuff_id]
+			"debuff_id"  = debuff_id
+		)
+
+	if(effect_proc == "add 2u reagent")
+		var/reagent_name = input(
+			src,
+			"Enter the reagent to add (exact name):",
+			"Reagent Selection"
+		) as null|anything in subtypesof(/datum/reagent)
+
+		if(!reagent_name) return
+
+		effect_args = list(
+			"reagent_name" = reagent_name,
 		)
 
 	// ---- Mob-spawning effects ----
 	if(effect_proc in list("gib and spawn player controlled mob", "easy ambush", "difficult ambush"))
-		var/list/mob_types = subtypesof(/mob/living/simple_animal)
-		var/list/mob_choices = list()
-
-		for(var/typepath in mob_types)
-			var/mob/living/simple_animal/M = new typepath
-			if(M && M.name)
-				mob_choices[M.name] = typepath
-
-		if(!mob_choices.len)
-			usr << "No mob types found."
-			return
-
 		var/mob_name = input(
 			src,
 			"Select the mob to spawn/give:",
 			"Mob Selection"
-		) as null|anything in mob_choices
+		) as null|anything in subtypesof(/mob/living/simple_animal)
 
 		if(!mob_name) return
 
 		effect_args = list(
 			"mob_name" = mob_name,
-			"mob_type" = mob_choices[mob_name]
 		)
 
 	// ---- Duration ----
