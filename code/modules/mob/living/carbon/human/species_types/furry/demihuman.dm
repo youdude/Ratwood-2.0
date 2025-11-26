@@ -36,6 +36,7 @@
 		/obj/item/bodypart/taur/kitsune,
 		/obj/item/bodypart/taur/venard,
 		/obj/item/bodypart/taur/otie,
+		/obj/item/bodypart/taur/centipede
 	)
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = TRUE

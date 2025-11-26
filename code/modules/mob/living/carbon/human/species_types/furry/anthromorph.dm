@@ -40,6 +40,7 @@
 		/obj/item/bodypart/taur/kitsune,
 		/obj/item/bodypart/taur/venard,
 		/obj/item/bodypart/taur/otie,
+		/obj/item/bodypart/taur/centipede
 	)
 
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID
