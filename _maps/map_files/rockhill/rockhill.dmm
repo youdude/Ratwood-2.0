@@ -28838,6 +28838,7 @@
 /area/rogue/indoors/town/manor/rockhill)
 "iLi" = (
 /obj/effect/decal/cleanable/blood/gibs,
+/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cavewet/wizarddungeon)
 "iLj" = (
@@ -243170,12 +243171,12 @@ fPd
 fPd
 sYx
 fPd
-cuM
-cuM
 azy
 azy
-cuM
-cuM
+azy
+azy
+azy
+azy
 azy
 azy
 azy
@@ -243603,7 +243604,7 @@ azy
 azy
 azy
 azy
-fPd
+azy
 azy
 fPd
 fPd
@@ -244025,9 +244026,9 @@ sYx
 sYx
 sYx
 sYx
-fPd
-cuM
-fPd
+azy
+azy
+azy
 azy
 azy
 azy
