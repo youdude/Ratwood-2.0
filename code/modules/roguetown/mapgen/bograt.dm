@@ -35,8 +35,6 @@
 							/obj/structure/glowshroom = 2,
 							/obj/structure/closet/dirthole/closed/loot = 3,
 							/obj/structure/flora/roguegrass/swampweed = 6,
-							/obj/structure/flora/roguegrass/pyroclasticflowers = 2,
-							/obj/structure/flora/roguegrass/bush/westleach = 5,
 							/obj/structure/flora/roguegrass/herb/random = 10,
 							/obj/structure/flora/rogueshroom = 5,
 							/obj/effect/decal/remains/bear = 1,
@@ -44,7 +42,7 @@
 							/obj/structure/zizo_bane = 3,)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=5,
 						/turf/open/water/swamp=5,
-						/turf/open/floor/rogue/grass = 40)
+						/turf/open/floor/rogue/dirt = 100)
 	allowed_areas = list(/area/rogue/outdoors/bograt)
 
 /datum/mapGeneratorModule/bogratroad
@@ -67,7 +65,24 @@
 							/obj/item/natural/stone = 12,
 							/obj/item/natural/rock = 5,
 							/obj/item/grown/log/tree/stick = 6,
-							/obj/structure/flora/roguetree/stump/log = 6)
+							/obj/structure/flora/roguetree/stump/log = 6,
+							/obj/structure/flora/ausbushes/ppflowers = 2,
+							/obj/structure/flora/ausbushes/ywflowers = 2,
+							/obj/item/magic/artifact = 4,
+							/obj/structure/leyline = 2,
+							/obj/structure/voidstoneobelisk = 1,
+							/obj/structure/flora/roguegrass/herb/manabloom = 4,
+							/obj/item/magic/manacrystal = 1,
+							/obj/item/grown/log/tree/stick = 10,
+							/obj/structure/flora/roguetree/stump/log = 3,
+							/obj/structure/flora/roguetree/stump = 4,
+							/obj/structure/glowshroom = 2,
+							/obj/structure/closet/dirthole/closed/loot = 3,
+							/obj/structure/flora/roguegrass/swampweed = 6,
+							/obj/structure/flora/roguegrass/herb/random = 10,
+							/obj/structure/flora/rogueshroom = 5,
+							/obj/effect/decal/remains/bear = 1,
+							/obj/effect/decal/remains/human = 1,)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=5,
 						/turf/open/water/swamp=5,
 						/turf/open/floor/rogue/dirt = 60)

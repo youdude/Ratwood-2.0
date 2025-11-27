@@ -19,9 +19,9 @@
 							/obj/structure/flora/roguegrass/bush = 25,
 							/obj/structure/flora/roguegrass = 200,
 							/obj/structure/flora/roguegrass/herb/random = 7,
-							/obj/structure/flora/roguegrass/bush/westleach = 7,
+							/obj/structure/flora/roguegrass/bush/westleach = 15,
 							/obj/structure/flora/roguegrass/maneater = 13,
-							/obj/structure/flora/roguegrass/pyroclasticflowers = 10,
+							/obj/structure/flora/roguegrass/pyroclasticflowers = 3,
 							/obj/item/natural/stone = 23,
 							/obj/item/natural/rock = 6,
 							/obj/item/grown/log/tree/stick = 16,
@@ -30,7 +30,8 @@
 							/obj/structure/closet/dirthole/closed/loot=3,
 							/obj/structure/flora/roguegrass/maneater/real/juvenile=3)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=2,
-						/turf/open/water/swamp=1)
+						/turf/open/water/swamp=1,
+						/turf/open/floor/rogue/dirt = 100)
 	allowed_areas = list(/area/rogue/outdoors/woodsrat)
 
 /datum/mapGeneratorModule/forestratroad
@@ -55,4 +56,4 @@
 							/obj/item/natural/rock = 1,
 							/obj/item/grown/log/tree/stick = 3,
 							/obj/structure/flora/roguetree/stump/log = 3,
-							/obj/structure/flora/roguegrass/pyroclasticflowers = 5,)
+							/obj/structure/flora/roguegrass/pyroclasticflowers = 3)
