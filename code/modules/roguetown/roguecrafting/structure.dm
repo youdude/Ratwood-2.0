@@ -972,7 +972,7 @@
 /datum/crafting_recipe/roguetown/structure/cauldronalchemy
 	name = "alchemy cauldron"
 	result = /obj/machinery/light/rogue/cauldron
-	reqs = list(/obj/item/rogueore/iron = 1) // changed to ore because this can be bought or mined. witches or even doctors who dont get a house get badly screwed over not having this.
+	reqs = list(/obj/item/grown/log/tree/stick = 2, /obj/item/natural/stone = 3, /obj/item/reagent_containers/glass/bucket/pot/stone = 1) // changed to ore because this can be bought or mined. witches or even doctors who dont get a house get badly screwed over not having this.
 	verbage_simple = "assemble"
 	verbage = "assembles"
 	skillcraft = /datum/skill/craft/alchemy
