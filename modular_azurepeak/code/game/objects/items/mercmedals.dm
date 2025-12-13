@@ -138,7 +138,7 @@
 	desc = "An old, decaying scroll of some sort. Marked with odd stains and liable to tear if you're too rough."
 	icon_state = "oathmarked_writ"
 
-/obj/item/clothing/cloak/cape/oathmarked/examine(mob/user)
+/obj/item/clothing/neck/roguetown/luckcharm/mercmedal/oathmarked/examine(mob/user)
 	. = ..()
 	if(isdracon(user))
 		. += "<small>With the destruction of an old empire, came a great sadness. A profound longing for what was lost. \
