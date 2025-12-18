@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/anthrax
-	name = "Black Venom"
-	tutorial = "The Dark elves, who usually live underground, are an extremely violent race. They are known for their insidious ability to use spider poisons and razor-sharp blades.  The matriarch has set you a task: to get to the surface and find out what is going on, and during this time you will be able to earn money, because, unfortunately, the inhabitants of the upper world refuse to accept spider paws as payment for their services."
+	name = "Crocs de l'araignée Cavalier"
+	tutorial = "The Crocs de l'araignée, translated literally to mean 'Spider's Teeth', is a renowned collective of blades, whips, and riders for hire often employed in the vast drow undercity complexes and occasionally the surface above. Infamous for their battlefrenzy, sadism, and mastery over arachnid cavalry, a member of the Spider's Teeth stands among some of the fiercest if cruelest warriors in Psydonia. Dark elves ultimately are only truly aligned to themselves and their own interests; this trait makes them surprisingly pragmatic and straightforward mercenaries, as a drow can be counted on to do any job so long as the price is right and it serves whatever higher ambition they might have."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
 		/datum/species/elf/dark,
@@ -77,9 +77,9 @@
 
 	H.merctype = 15
 
-/datum/advclass/mercenary/anthrax/assasin
-	name = "Anthrax Assasin"
-	outfit = /datum/outfit/job/roguetown/mercenary/anthrax/assasin
+/datum/advclass/mercenary/anthrax/assassin
+	name = ""Crocs de l'araignée Assassin"
+	outfit = /datum/outfit/job/roguetown/mercenary/anthrax/assassin
 	traits_applied = list(TRAIT_DARKVISION, TRAIT_DODGEEXPERT)
 	subclass_stats = list(
 		STATKEY_WIL = 2,
@@ -113,7 +113,7 @@
 		/datum/skill/craft/traps = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/mercenary/anthrax/assasin/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/mercenary/anthrax/assassin/pre_equip(mob/living/carbon/human/H)
 	..()
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shadowshirt/elflock
 	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/shadowrobe
