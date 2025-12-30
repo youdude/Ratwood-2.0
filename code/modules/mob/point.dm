@@ -13,15 +13,6 @@
  *
  * overridden here and in /mob/dead/observer for different point span classes and sanity checks
  */
-/mob/verb/pointed(atom/pointed_atom as mob|obj|turf in view())
-	set name = "Point To"
-	set category = "IC"
-
-	if(istype(pointed_atom, /obj/effect/temp_visual/point))
-		return FALSE
-
-	linepoint(pointed_atom)
-
 /mob/proc/linepoint(atom/pointed_atom as mob|obj|turf in view())
 	if(world.time < lastpoint + POINT_TIME)
 		return FALSE
