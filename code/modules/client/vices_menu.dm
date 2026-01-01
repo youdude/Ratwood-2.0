@@ -935,6 +935,13 @@ GLOBAL_LIST_EMPTY(cached_loadout_icons)
 	if(virtue.custom_text)
 		html += "<div class='statpack-stats' style='margin-top: 4px;'>" + virtue.custom_text + "</div>"
 	
+	// Display traits granted
+	if(LAZYLEN(virtue.added_traits))
+		html += "<div class='statpack-stats' style='margin-top: 8px;'><strong>Traits granted:</strong><br>"
+		for(var/trait in virtue.added_traits)
+			html += "• [trait]<br>"
+		html += "</div>"
+	
 	// Display skills granted
 	if(LAZYLEN(virtue.added_skills))
 		html += "<div class='statpack-stats' style='margin-top: 8px;'><strong>Skills granted:</strong><br>"
@@ -968,6 +975,13 @@ GLOBAL_LIST_EMPTY(cached_loadout_icons)
 		
 		if(virtuetwo.custom_text)
 			html += "<div class='statpack-stats' style='margin-top: 4px;'>" + virtuetwo.custom_text + "</div>"
+		
+		// Display traits granted for second virtue
+		if(LAZYLEN(virtuetwo.added_traits))
+			html += "<div class='statpack-stats' style='margin-top: 8px;'><strong>Traits granted:</strong><br>"
+			for(var/trait in virtuetwo.added_traits)
+				html += "• [trait]<br>"
+			html += "</div>"
 		
 		// Display skills granted for second virtue
 		if(LAZYLEN(virtuetwo.added_skills))
