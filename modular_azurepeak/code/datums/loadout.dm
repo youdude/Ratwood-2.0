@@ -42,6 +42,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Custom Book"
 	path = /obj/item/book/rogue/loadoutbook
 
+/datum/loadout_item/hand_mirror
+	name = "Hand Mirror"
+	path = /obj/item/handmirror
+
 //TOOLS
 
 /datum/loadout_item/bauernwehr
@@ -83,6 +87,58 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "bottle"
 	path = /obj/item/reagent_containers/glass/bottle/rogue
 	triumph_cost = 1
+
+/datum/loadout_item/waterskin
+	name = "Waterskin"
+	path = /obj/item/reagent_containers/glass/bottle/waterskin
+	triumph_cost = 2
+
+/datum/loadout_item/flint
+	name = "Flint"
+	path = /obj/item/flint
+	triumph_cost = 2
+
+/datum/loadout_item/aaneedle
+	name = "Decrepit Alloy Needle"
+	path = /obj/item/needle/aalloy
+	triumph_cost = 2
+
+/datum/loadout_item/bandage_roll
+	name = "Roll of Bandages"
+	path = /obj/item/natural/bundle/cloth/bandage/full
+	triumph_cost = 3
+
+/datum/loadout_item/sack
+	name = "Sack"
+	path = /obj/item/storage/roguebag
+	triumph_cost = 2
+
+//ANCIENT TOOLS (Decrepit/Aalloy)
+
+/datum/loadout_item/ancient_hammer
+	name = "Decrepit Hammer"
+	path = /obj/item/rogueweapon/hammer/aalloy
+	triumph_cost = 2
+
+/datum/loadout_item/ancient_tongs
+	name = "Decrepit Tongs"
+	path = /obj/item/rogueweapon/tongs/aalloy
+	triumph_cost = 2
+
+/datum/loadout_item/ancient_pick
+	name = "Decrepit Pick"
+	path = /obj/item/rogueweapon/pick/aalloy
+	triumph_cost = 2
+
+/datum/loadout_item/ancient_shovel
+	name = "Decrepit Shovel"
+	path = /obj/item/rogueweapon/shovel/aalloy
+	triumph_cost = 2
+
+/datum/loadout_item/ancient_hoe
+	name = "Decrepit Hoe"
+	path = /obj/item/rogueweapon/hoe/aalloy
+	triumph_cost = 2
 
 //HATS
 /datum/loadout_item/shalal

@@ -1,3 +1,6 @@
+// Maximum cache size to prevent unbounded growth
+#define MAX_ICON_CACHE_SIZE 200
+
 /datum/preferences/proc/open_loadout_menu(mob/user)
 	if(!user || !user.client)
 		return
@@ -247,9 +250,14 @@
 			html += "<div class='item-display'>"
 			html += "<div class='item-icon'>"
 			
-			// Use the item's icon
+			// Use the item's icon with caching
 			if(icon_file && icon_state)
-				user << browse_rsc(icon(icon_file, icon_state), "loadout_icon_[i].png")
+				var/cache_key = "[icon_file]_[icon_state]"
+				if(!(cache_key in GLOB.cached_loadout_icons))
+					if(GLOB.cached_loadout_icons.len >= MAX_ICON_CACHE_SIZE)
+						GLOB.cached_loadout_icons.Cut(1, 50)
+					GLOB.cached_loadout_icons[cache_key] = icon(icon_file, icon_state)
+				user << browse_rsc(GLOB.cached_loadout_icons[cache_key], "loadout_icon_[i].png")
 				html += "<img src='loadout_icon_[i].png' />"
 			
 			html += "</div>"
