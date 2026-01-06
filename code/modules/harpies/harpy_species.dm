@@ -19,9 +19,9 @@
 	skin_tone_wording = "Heritage"
 	default_color = "FFFFFF"
 
-	species_traits = list(EYECOLOR, HAIR, FACEHAIR, LIPS, STUBBLE, OLDGREY)
+	species_traits = list(MUTCOLORS, EYECOLOR, HAIR, FACEHAIR, LIPS, STUBBLE, OLDGREY)
 
-	use_skintones = TRUE
+	use_skintones = FALSE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 
 	limbs_icon_m = 'icons/roguetown/harpies/m/harpy.dmi'
@@ -74,7 +74,9 @@
 		/datum/customizer/bodypart_feature/face_detail,
 		/datum/customizer/bodypart_feature/underwear,
 		/datum/customizer/organ/tail/harpy,
+		/datum/customizer/organ/horns/anthro,
 		/datum/customizer/organ/wings/harpy,
+		/datum/customizer/organ/snout/harpy,
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/animal,
