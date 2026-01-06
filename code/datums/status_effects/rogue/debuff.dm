@@ -548,9 +548,9 @@
 	. = ..()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING)
 	if(!blimmune)
-		REMOVE_TRAIT(owner, TRAIT_BLOODLOSS_IMMUNE, id)
+		REMOVE_TRAIT(owner, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
 	if(!nobreath)
-		REMOVE_TRAIT(owner, TRAIT_NOBREATH, id)
+		REMOVE_TRAIT(owner, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
 
 /datum/status_effect/debuff/necrandeathdoorwilloss/process()
 	.=..()

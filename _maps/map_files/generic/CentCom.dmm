@@ -1936,6 +1936,7 @@
 	})
 "hH" = (
 /obj/structure/table/church/alt,
+/obj/item/roguecoin/aalloy,
 /turf/open/floor/rogue/underworld/road,
 /area/rogue/indoors/deathsedge)
 "hJ" = (
@@ -2075,10 +2076,6 @@
 /obj/effect/landmark/start/vampireknight,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/vampire_manor)
-"iv" = (
-/mob/living/carbon/spirit,
-/turf/open/floor/rogue/underworld/road,
-/area/rogue/indoors/deathsedge)
 "iw" = (
 /obj/structure/fluff/railing/border{
 	dir = 4
@@ -3306,6 +3303,12 @@
 	first_time_text = null;
 	name = "Wretched Caves"
 	})
+"on" = (
+/obj/structure/waywardspirit{
+	dir = 4
+	},
+/turf/open/floor/rogue/underworld/road,
+/area/rogue/indoors/deathsedge)
 "oo" = (
 /turf/open/floor/rogue/blocks/flipped,
 /area/rogue/indoors/eventarea)
@@ -3844,12 +3847,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/vampire_manor)
-"qI" = (
-/mob/living/carbon/spirit{
-	dir = 8
-	},
-/turf/open/floor/rogue/underworld/road,
-/area/rogue/indoors/deathsedge)
 "qK" = (
 /obj/structure/stairs{
 	dir = 1
@@ -4782,6 +4779,10 @@
 /area/rogue/outdoors/woods{
 	first_time_text = "The Murderwood"
 	})
+"vM" = (
+/obj/structure/waywardspirit,
+/turf/open/floor/rogue/underworld/road,
+/area/rogue/indoors/deathsedge)
 "vN" = (
 /obj/machinery/anvil,
 /obj/item/rogueweapon/hammer/iron,
@@ -6894,7 +6895,7 @@
 /turf/open/floor/rogue/underworld/road,
 /area/rogue/indoors/deathsedge)
 "EU" = (
-/mob/living/carbon/spirit{
+/obj/structure/waywardspirit{
 	dir = 1
 	},
 /turf/open/floor/rogue/underworld/road,
@@ -7092,12 +7093,6 @@
 	first_time_text = "Murder Pass";
 	name = "Bandit Woods"
 	})
-"FU" = (
-/mob/living/carbon/spirit{
-	dir = 4
-	},
-/turf/open/floor/rogue/underworld/road,
-/area/rogue/indoors/deathsedge)
 "FW" = (
 /obj/machinery/light/rogue/firebowl/stump{
 	pixel_y = 6
@@ -8116,6 +8111,7 @@
 /area/rogue/indoors/vampire_manor)
 "KV" = (
 /obj/structure/table/church/end/alt,
+/obj/item/roguecoin/aalloy,
 /turf/open/floor/rogue/underworld/road,
 /area/rogue/indoors/deathsedge)
 "KZ" = (
@@ -11047,6 +11043,12 @@
 /obj/item/paper,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/vampire_manor)
+"Zg" = (
+/obj/structure/waywardspirit{
+	dir = 8
+	},
+/turf/open/floor/rogue/underworld/road,
+/area/rogue/indoors/deathsedge)
 "Zj" = (
 /obj/structure/curtain{
 	color = "#ad885c"
@@ -24325,7 +24327,7 @@ kI
 Ey
 Ey
 Ey
-Ey
+on
 Ey
 MC
 MC
@@ -24464,7 +24466,7 @@ Ey
 Ey
 MC
 MC
-Ey
+on
 Ey
 Ey
 MC
@@ -24474,7 +24476,7 @@ MC
 Ey
 MC
 Ey
-Ey
+EU
 Ey
 MC
 MC
@@ -24721,7 +24723,7 @@ Ey
 Ey
 Ey
 Ey
-FU
+Ey
 Ey
 Ey
 Ey
@@ -24729,7 +24731,7 @@ Ey
 Ey
 MC
 MC
-FU
+Ey
 Ey
 Ey
 MC
@@ -25495,7 +25497,7 @@ MC
 Ey
 Ey
 Ey
-Ey
+vM
 Ey
 Ey
 Ey
@@ -25890,7 +25892,7 @@ Ey
 Ey
 MC
 MC
-iv
+Ey
 Ey
 Ey
 Ey
@@ -26405,7 +26407,7 @@ Ey
 Ey
 Ey
 Ey
-Ey
+vM
 Ey
 Ey
 Ey
@@ -26942,7 +26944,7 @@ Ey
 Ey
 MC
 MC
-Ey
+Zg
 Ey
 Ey
 MC
@@ -27192,7 +27194,7 @@ Ey
 MC
 Ey
 Ey
-Ey
+Zg
 Ey
 Ey
 Ey
@@ -27458,7 +27460,7 @@ Ey
 Ey
 Ey
 Ey
-qI
+Ey
 Ey
 Ey
 MC

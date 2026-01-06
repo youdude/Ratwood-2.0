@@ -64,7 +64,7 @@ GLOBAL_VAR(deaths_door_exit)//turf at necra's shrine on each map
 			to_chat(user, span_warning("Necra's paths blur before you. You lack the sight to choose."))
 
 	if(!length(dests))
-		message_admins("Death's Door Shrine: No exit destinations! Inform a mapper!")
+		message_admins("Death's Door Shrine: No exit destinations! Inform a mapper!")	//You're missing /obj/effect/landmark/deaths_door/exit from the map
 		return
 
 	var/turf/T = prompt_deaths_door_exit(user, dests)
@@ -135,15 +135,23 @@ GLOBAL_VAR(deaths_door_exit)//turf at necra's shrine on each map
 	. = ..()
 	var/list/dests = GLOB.deaths_door_entries
 	if(!length(dests))
-		message_admins("Death's Door Portal: No entry destinations! Inform a mapper!")
+		message_admins("Death's Door Portal: No entry destinations! Inform a mapper!")	//You're missing any landmarks that are subtypes of /obj/effect/landmark/deaths_door/entry in deaths precipice
 		return
 
 	destination = pick(dests)
+	addtimer(CALLBACK(src, PROC_REF(expire)), 15 SECONDS)
+
+/obj/structure/deaths_door_portal/proc/expire()
+	if(QDELETED(src))
+		return
+	visible_message(span_notice("The glowing portal closes shut!"))
+	playsound(get_turf(src), 'sound/misc/deadbell.ogg', 50, TRUE, -2)
+	qdel(src)
 
 /obj/structure/deaths_door_portal/attack_hand(mob/living/user)
 	playsound(get_turf(src), 'sound/misc/carriage2.ogg', 50, TRUE, -2, ignore_walls = TRUE)
 	to_chat(user, span_notice("You reach for the glowing portal..."))
-	if(!do_after(user, 3 SECONDS, src))
+	if(!do_after(user, 2 SECONDS, src))
 		return
 	enter_portal(user)
 
@@ -157,7 +165,7 @@ GLOBAL_VAR(deaths_door_exit)//turf at necra's shrine on each map
 	if(!Adjacent(user) || !user.Adjacent(M))
 		return
 	playsound(get_turf(src), 'sound/misc/carriage2.ogg', 50, TRUE, -2, ignore_walls = TRUE)
-	if(!do_after_mob(user, M, 4 SECONDS))
+	if(!do_after_mob(user, M, 2 SECONDS))
 		return
 
 	if(M.mob_biotypes & MOB_UNDEAD)
@@ -180,6 +188,42 @@ GLOBAL_VAR(deaths_door_exit)//turf at necra's shrine on each map
 GLOBAL_VAR_INIT(underworld_strands, 0)
 /obj/effect/landmark/underworldstrands
 
+/obj/effect/landmark/underworldstrands/Initialize()
+	. = ..()
+	start_timer()
+
+/obj/effect/landmark/underworldstrands/Destroy()
+	if(spawn_timer)
+		deltimer(spawn_timer)
+	return ..()
+
+/obj/effect/landmark/underworldstrands/proc/start_timer()
+	if(spawn_timer)
+		deltimer(spawn_timer)
+
+	var/delay = rand(15 MINUTES, 30 MINUTES)
+	spawn_timer = addtimer(
+		CALLBACK(src, PROC_REF(try_spawn)),
+		delay,
+		TIMER_STOPPABLE
+	)
+/obj/effect/landmark/underworldstrands/proc/try_spawn()
+	spawn_timer = null
+
+	var/turf/T = get_turf(src)
+	if(!T)
+		start_timer()
+		return
+
+	// If lux already present, reset timer
+	for(var/obj/item/soulthread/deathsdoor/L in T)
+		start_timer()
+		return
+
+	// Otherwise spawn new lux
+	new /obj/item/soulthread/deathsdoor(T)
+
+	start_timer()
 /obj/item/soulthread/deathsdoor
 	name = "shimmering lux-thread"
 	desc = "Eerie glowing thread, cometh from the grave"
@@ -193,25 +237,17 @@ GLOBAL_VAR_INIT(underworld_strands, 0)
 /obj/item/soulthread/deathsdoor/Destroy()
 	if(should_track)
 		GLOB.underworld_strands -= 1
-	strand_upkeep()
 	return ..()
 
 /obj/item/soulthread/deathsdoor/pickup(mob/user)
 	..()
 	if(should_track)
 		GLOB.underworld_strands -= 1
-	strand_upkeep()
 
 /obj/item/soulthread/deathsdoor/dropped(mob/user)
 	..()
 	if(should_track)
 		GLOB.underworld_strands += 1
-
-/proc/strand_upkeep()
-	if(GLOB.underworld_strands <= 1)
-		for(var/obj/effect/landmark/underworldstrands/B in GLOB.landmarks_list)
-			new /obj/item/soulthread/deathsdoor(B.loc)
-
 
 /mob/living/proc/extract_from_deaths_edge()//for total exhaustion in death's precipice
 	// Already unconscious? Don't loop
@@ -225,7 +261,7 @@ GLOBAL_VAR_INIT(underworld_strands, 0)
 
 	visible_message(
 		span_danger("[src] collapses as Necra's grasp tightens."),
-		span_warning("The last thing you see before you collapse is a spirit tugging strands of lux straight out of your chest.")
+		span_cultboldtalic("The last thing you see before you collapse is a spirit tugging strands of lux straight out of your chest.")
 	)
 
 	src.forceMove(T)
@@ -241,3 +277,12 @@ GLOBAL_VAR_INIT(underworld_strands, 0)
 		return null
 
 	return pick(candidates)
+
+/obj/structure/waywardspirit
+	name = "A Wayward Soul"
+	desc = "Lost in the deathly tranquility, never to return."
+	icon = 'icons/roguetown/underworld/enigma_husks.dmi'
+	icon_state = "hollow"
+	opacity = FALSE
+	density = FALSE
+	max_integrity = 0

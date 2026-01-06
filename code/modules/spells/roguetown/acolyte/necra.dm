@@ -122,7 +122,7 @@
 //Choosing between skulls/respite
 /obj/effect/proc_holder/spell/self/necra_spirits
 	name = "Necra's Spirits"
-	overlay_state = "order"//Temp.
+	overlay_state = "consecrateburial"
 	desc = "The undermaiden holds vengefulspirits within her grasp, allowing you to choose between <b>Her</b> allies."
 	miracle = TRUE
 	devotion_cost = 100
