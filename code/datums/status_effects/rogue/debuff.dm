@@ -534,30 +534,36 @@
 
 /datum/status_effect/debuff/necrandeathdoorwilloss/on_apply()
 	. = ..()
-	owner.add_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
-	if(HAS_TRAIT(owner, TRAIT_BLOODLOSS_IMMUNE))
-		blimmune = TRUE
-	else
-		ADD_TRAIT(owner, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
-	if(HAS_TRAIT(owner, TRAIT_NOBREATH))
-		nobreath = TRUE
-	else
-		ADD_TRAIT(owner, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.add_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
+		if(HAS_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE))
+			blimmune = TRUE
+		else
+			ADD_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+		if(HAS_TRAIT(H, TRAIT_NOBREATH))
+			nobreath = TRUE
+		else
+			ADD_TRAIT(H, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
 
 /datum/status_effect/debuff/necrandeathdoorwilloss/on_remove()
 	. = ..()
-	owner.remove_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING)
-	if(!blimmune)
-		REMOVE_TRAIT(owner, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
-	if(!nobreath)
-		REMOVE_TRAIT(owner, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.remove_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING)
+		if(!blimmune)
+			REMOVE_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+		if(!nobreath)
+			REMOVE_TRAIT(H, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
 
 /datum/status_effect/debuff/necrandeathdoorwilloss/process()
 	.=..()
-	owner.energy_add(-1)	//being in death's edge drains energy from people
-	var/area/rogue/our_area = get_area(owner)
-	if(!(our_area.necra_area))
-		owner.remove_status_effect(/datum/status_effect/debuff/necrandeathdoorwilloss)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.energy_add(-1)	//being in death's edge drains energy from people
+		var/area/rogue/our_area = get_area(H)
+		if(!(our_area.necra_area))
+			owner.remove_status_effect(/datum/status_effect/debuff/necrandeathdoorwilloss)
 
 /atom/movable/screen/alert/status_effect/debuff/necranwilloss
 	name = "Necran Deathly calm!"
