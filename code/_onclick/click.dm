@@ -17,6 +17,7 @@
 /mob/var/last_reach_time
 /mob/var/obj/item/last_reach_tool
 
+
 //Delays the mob's next click/action by num deciseconds
 // eg: 10-3 = 7 deciseconds of delay
 // eg: 10*0.5 = 5 deciseconds of delay
@@ -107,10 +108,6 @@
 
 	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
 		return
-
-	if(modifiers["right"] && !modifiers["shift"] && !modifiers["alt"] && !modifiers["ctrl"])
-		if(try_special_attack(A, modifiers))
-			return
 
 	if(next_move > world.time)
 		return
@@ -306,7 +303,7 @@
 						target = M
 						break
 					if(target)
-						if(target.Adjacent(src))
+						if(target.Adjacent(src) || (CanReach(target, W) && used_intent.effective_range_type))
 							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
 							resolveAdjacentClick(target,W,params,used_hand)
 							atkswinging = null
@@ -316,7 +313,7 @@
 						resolveAdjacentClick(T,W,params,used_hand) //hit the turf
 					if(!used_intent.noaa)
 						changeNext_move(CLICK_CD_RAPID)
-						if(get_dist(get_turf(src), T) <= used_intent.reach)
+						if(get_dist(my_turf, T) <= used_intent.reach)
 							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
 						var/adf = used_intent.clickcd
 						if(istype(rmb_intent, /datum/rmb_intent/aimed))
@@ -325,9 +322,9 @@
 							adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 						changeNext_move(adf)
 						if(W)
-							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
+							playsound(my_turf, pick(W.swingsound), 100, FALSE)
 						else
-							playsound(get_turf(src), used_intent.miss_sound, 100, FALSE)
+							playsound(my_turf, used_intent.miss_sound, 100, FALSE)
 							if(used_intent.miss_text)
 								visible_message(span_warning("[src] [used_intent.miss_text]!"), \
 												span_warning("I [used_intent.miss_text]!"))
@@ -370,11 +367,13 @@
 			var/adf = used_intent.clickcd
 			if(istype(rmb_intent, /datum/rmb_intent/aimed))
 				adf = round(adf * CLICK_CD_MOD_AIMED)
-			if(istype(rmb_intent, /datum/rmb_intent/swift))
+			else if(istype(rmb_intent, /datum/rmb_intent/swift))
 				adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 			changeNext_move(adf)
 		UnarmedAttack(A,1,params)
-	if(mob_timers[MT_INVISIBILITY] > world.time)
+
+	var/invis_timer = mob_timers[MT_INVISIBILITY]
+	if(invis_timer > world.time)
 		mob_timers[MT_INVISIBILITY] = world.time
 		update_sneak_invis(reset = TRUE)
 
@@ -420,9 +419,13 @@
 	return FALSE
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
+	if(ismob(src))
+		var/mob/M = src
+		if(M.last_reach_target == ultimate_target && M.last_reach_time == world.time && M.last_reach_tool == tool)
+			return M.last_reach_result
+
 	// A backwards depth-limited breadth-first-search to see if the target is
 	// logically "in" anything adjacent to us.
-	var/list/direct_access = DirectAccess()
 	var/depth = 1 + (view_only ? STORAGE_VIEW_DEPTH : INVENTORY_DEPTH)
 
 	var/list/closed = list()
@@ -442,8 +445,14 @@
 				var/mob/user = src
 				if(user.used_intent)
 					usedreach = user.used_intent.reach
-			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
+			if(isturf(target) || isturf(target.loc) || IsDirectlyAccessible(target)) //Directly accessible atoms
 				if(Adjacent(target) || ( (tool || (!iscarbon(src) && usedreach >= 2)) && CheckToolReach(src, target, usedreach))) //Adjacent or reaching attacks
+					if(ismob(src))
+						var/mob/M = src
+						M.last_reach_target = ultimate_target
+						M.last_reach_result = TRUE
+						M.last_reach_time = world.time
+						M.last_reach_tool = tool
 					return TRUE
 
 			if (!target.loc)
@@ -453,22 +462,44 @@
 				next += target.loc
 
 		checking = next
+
+	if(ismob(src))
+		var/mob/M = src
+		M.last_reach_target = ultimate_target
+		M.last_reach_result = FALSE
+		M.last_reach_time = world.time
+		M.last_reach_tool = tool
 	return FALSE
 
-/atom/movable/proc/DirectAccess()
-	return list(src, loc)
+/atom/movable/proc/IsDirectlyAccessible(atom/target)
+	return target == src || target == loc
 
-/mob/DirectAccess(atom/target)
-	return ..() + contents
+/mob/IsDirectlyAccessible(atom/target)
+	if(target == src || target == loc)
+		return TRUE
+	if(target.loc == src)
+		return TRUE
+	return FALSE
 
-/mob/living/DirectAccess(atom/target)
-	return ..() + GetAllContents()
+/mob/living/IsDirectlyAccessible(atom/target)
+	if(target == loc)
+		return TRUE
+	var/atom/curr = target
+	while(curr)
+		if(curr == src)
+			return TRUE
+		if(isarea(curr))
+			break
+		curr = curr.loc
+	return FALSE
 
 /atom/proc/AllowClick()
 	return FALSE
 
 /turf/AllowClick()
 	return TRUE
+
+GLOBAL_LIST_EMPTY(reach_dummy_pool)
 
 /proc/CheckToolReach(atom/movable/here, atom/movable/there, reach)
 	if(!here || !there)
@@ -478,19 +509,30 @@
 			return FALSE
 		if(1)
 			return FALSE //here.Adjacent(there)
-		if(2 to INFINITY)
-			var/obj/dummy = new(get_turf(here))
-			dummy.pass_flags |= PASSTABLE
-			dummy.invisibility = INVISIBILITY_ABSTRACT
+		if(2 to INFINITY) // only apply to weapons with 2+ range (spears, lances, zweihander, etc)
+			var/obj/dummy
+			if(GLOB.reach_dummy_pool.len)
+				dummy = GLOB.reach_dummy_pool[GLOB.reach_dummy_pool.len]
+				GLOB.reach_dummy_pool.len--
+			else
+				dummy = new /obj()
+				dummy.pass_flags |= PASSTABLE
+				dummy.invisibility = INVISIBILITY_ABSTRACT
+			// this is set to FLYING for weapons that reach over 2 tiles to allow attacking over holes
+			// possibly not the best way of solving it, but it will prevent the error in issue #1983 (for now)
+			dummy.movement_type = FLYING
+
+			dummy.forceMove(get_turf(here))
 			for(var/i in 1 to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))
 				if(dummy.CanReach(there))
-					qdel(dummy)
+					GLOB.reach_dummy_pool += dummy
 					return TRUE
 				if(!dummy.Move(T)) //we're blocked!
-					qdel(dummy)
+					GLOB.reach_dummy_pool += dummy
 					return
-			qdel(dummy)
+			GLOB.reach_dummy_pool += dummy
+			return FALSE
 
 // Default behavior: ignore double clicks (the second click that makes the doubleclick call already calls for a normal click)
 /mob/proc/DblClickOn(atom/A, params)
@@ -687,9 +729,8 @@
 /atom/proc/face_atom(atom/A, location, control, params)
 	if(!A)
 		return
-	if(!A.xyoverride)
-		if((!A || !x || !y || !A.x || !A.y))
-			return
+	if(!A.xyoverride && (!x || !y || !A.x || !A.y))
+		return
 	var/atom/holder = A.face_me(location, control, params)
 	if(!holder)
 		return
@@ -885,7 +926,9 @@
 	if(stat)
 		return
 	if(get_dist(src, A) <= 2)
-		if(T == loc)
+		if(A.loc == src)
+			A.ShiftRightClick(src)
+		else if(T == loc)
 			look_up()
 		else
 			if(istransparentturf(T))
@@ -914,47 +957,3 @@
 	tempfixeye = TRUE
 	for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
 		eyet.update_icon(src) //Update eye icon
-
-/// A special proc to fire rmb_intents *before* checking click cooldown, since some intents (guard) should be used regardless of CD.
-/mob/proc/try_special_attack(atom/A, list/modifiers)
-	return FALSE
-
-/mob/living/try_special_attack(atom/A, list/modifiers)
-	if(!rmb_intent || !cmode || istype(A, /obj/item/clothing) || istype(A, /obj/item/quiver) || istype(A, /obj/item/storage))
-		return FALSE
-
-	if(next_move > world.time && !rmb_intent?.bypasses_click_cd)
-		return FALSE
-
-	if(rmb_intent?.adjacency && !Adjacent(A))
-		return FALSE
-
-	rmb_intent.special_attack(src, ismob(A) ? A : get_foe_from_turf(get_turf(A)))
-	return TRUE
-
-/// Used for "directional" style rmb attacks on a turf, prioritizing standing targets
-/mob/living/proc/get_foe_from_turf(turf/T)
-	if(!istype(T))
-		return
-
-	var/list/mob/living/foes = list()
-	for(var/mob/living/foe_in_turf in T)
-		if(foe_in_turf == src)
-			continue
-
-		var/foe_prio = rand(4, 8)
-		if(foe_in_turf.mobility_flags & MOBILITY_STAND)
-			foe_prio += 10
-		else if(foe_in_turf.stat != CONSCIOUS)
-			foe_prio = 2
-		else if(foe_in_turf.surrendering)
-			foe_prio = -5
-
-		foes[foe_in_turf] = foe_prio
-
-	if(!foes.len)
-		return null
-
-	if(foes.len > 1)
-		sortTim(foes, cmp = /proc/cmp_numeric_dsc, associative = TRUE)
-	return foes[1]
