@@ -128,7 +128,11 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	)
 	for(var/job_name in ready_players_by_job)
 		var/datum/job/J = SSjob.GetJob(job_name)
-		var/key = SSjob.bitflag_to_department(J.department_flag)
+		var/key
+		if(!J)
+			key = SSjob.bitflag_to_department(WANDERER, TRUE)
+		else
+			key = SSjob.bitflag_to_department(J.department_flag)
 
 		var/list/job_players = ready_players_by_job[job_name]
 		job_list_by_department[key] += "<B>[job_name]</B> ([job_players.len]) - [job_players.Join(", ")]"
