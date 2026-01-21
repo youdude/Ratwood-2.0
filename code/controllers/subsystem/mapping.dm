@@ -59,6 +59,7 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/PreInit()
 	HACK_LoadMapConfig()
 	// After assigning a config datum to var/config, we check which map ajudstment fits the current config
+
 	for(var/datum/map_adjustment/each_adjust as anything in subtypesof(/datum/map_adjustment))
 		if(config.map_file && initial(each_adjust.map_file_name) != config.map_file)
 			continue
@@ -77,7 +78,6 @@ SUBSYSTEM_DEF(mapping)
 		if(!config || config.defaulted)
 			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Vanderlin</span>")
 			config = old_config
-	log_world("DEBUG Mapping Init: map_adjustment = [map_adjustment]")
 	if(map_adjustment)
 		map_adjustment.on_mapping_init()
 		SSregionthreat?.on_map_ready()
