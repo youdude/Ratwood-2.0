@@ -111,8 +111,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/shake = TRUE
 	var/sexable = FALSE
 	var/compliance_notifs = TRUE
-	var/xenophobe_pref = 1
 	var/restricted_species_pref = null
+	var/wildshape_name = TRUE
+	var/xenophobe_pref = 1
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
