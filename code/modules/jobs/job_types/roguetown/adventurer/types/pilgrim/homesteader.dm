@@ -4,8 +4,8 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/homesteader
-	maximum_possible_slots = 20 // Should never fill, for the purpose of players to know what types towners are in round at the menu
-	category_tags = list(CTAG_DISABLED)
+	maximum_possible_slots = 10 // Should never fill, for the purpose of players to know what types towners are in round at the menu
+	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
 	traits_applied = list(TRAIT_HOMESTEAD_EXPERT)
 	subclass_stats = list(
 		STATKEY_SPD = -1,
