@@ -19,7 +19,7 @@
 	range = 30//We want this to go a few screens. Regardless.
 	embedchance = 100//Yessir.
 	speed = 0.1//Take a guess.
-	npc_simple_damage_mult = 4//240, at 60 base.
+	npc_simple_damage_mult = 4//320, at 80 base.
 	accuracy = 90//Their point. Very slow firing. Yet powerful and accurate.
 	bonus_accuracy = 10//As opposed to using PER.
 	damage_type = BRUTE
