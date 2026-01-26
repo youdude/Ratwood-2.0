@@ -136,7 +136,7 @@ At least, it should. Fingers crossed.
 	return chargetime
 
 /datum/intent/arc/firearm
-	var/basetime = 150
+	var/basetime = 140
 	chargetime = 1
 	chargedrain = 0
 
