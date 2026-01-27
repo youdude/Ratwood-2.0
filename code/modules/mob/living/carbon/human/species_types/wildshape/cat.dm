@@ -204,7 +204,8 @@
 			if(target.mind.has_antag_datum(/datum/antagonist/vampire))
 				to_chat(src, span_warning("... What? Its an elder vampire!"))
 				return
-		(!do_after(user, 7 SECONDS, target = target))
+		if(!do_after(user, 7 SECONDS, target = target))
+			return
 		var/ramount = 20
 		var/rid = /datum/reagent/medicine/healthpot
 		target.reagents.add_reagent(rid, ramount)
