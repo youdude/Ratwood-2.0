@@ -1628,7 +1628,7 @@
 
 /datum/sprite_accessory/hair/head/tomboy
 	name = "Tomboy"
-	icon_state = "tomboy"
+	icon_state = "tomboy_f"
 
 /datum/sprite_accessory/hair/head/vagabond
 	name = "Vagabond"
