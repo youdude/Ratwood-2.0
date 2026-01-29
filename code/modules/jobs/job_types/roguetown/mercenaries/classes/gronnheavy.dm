@@ -1,5 +1,5 @@
 /datum/advclass/mercenary/gronnheavy
-	name = ""
+	name = "Fjall Járnklæddur"
 	tutorial = "Even within Fjall, few bear witness to the Horned Visages of the Járnklæddur; Ironclad warriors who stand against the undead armies that rise out of the 'Red Blizzard'. Those who do not have the blessing of the Iskarn Shamans within the Northern Empty oft-seek the protection of the Járnklæddur, despite their steep costs."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
@@ -49,6 +49,7 @@
 	r_hand = /obj/item/rogueweapon/mace/maul //this is literally the only weapon type they'll get to use. No alternatives.
 	neck = /obj/item/clothing/neck/roguetown/gorget //Their weakspot. Go replace it if you're a chud I guess
 	backl = /obj/item/storage/backpack/rogue/satchel/black
+	backr = /obj/item/rogueweapon/scabbard/gwstrap
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backpack_contents = list(
