@@ -1838,17 +1838,17 @@ GLOBAL_LIST_EMPTY(cached_loadout_icons)
 					icon_counter++
 					
 					// Get item icon with caching
-					var/obj/item/sample = item.path
-					var/icon_file = initial(sample.icon)
-					var/icon_state_name = initial(sample.icon_state)
+					// var/obj/item/sample = item.path
+					// var/icon_file = initial(sample.icon)
+					// var/icon_state_name = initial(sample.icon_state)
 					
-					if(icon_file && icon_state_name)
-						var/cache_key = "[icon_file]_[icon_state_name]"
-						if(!(cache_key in GLOB.cached_loadout_icons))
-							if(GLOB.cached_loadout_icons.len >= MAX_ICON_CACHE_SIZE)
-								GLOB.cached_loadout_icons.Cut(1, 50)
-							GLOB.cached_loadout_icons[cache_key] = icon(icon_file, icon_state_name)
-						usr << browse_rsc(GLOB.cached_loadout_icons[cache_key], "loadout_select_[icon_counter].png")
+					// if(icon_file && icon_state_name)
+					// 	var/cache_key = "[icon_file]_[icon_state_name]"
+					// 	if(!(cache_key in GLOB.cached_loadout_icons))
+					// 		if(GLOB.cached_loadout_icons.len >= MAX_ICON_CACHE_SIZE)
+					// 			GLOB.cached_loadout_icons.Cut(1, 50)
+					// 		GLOB.cached_loadout_icons[cache_key] = icon(icon_file, icon_state_name)
+					// 	usr << browse_rsc(GLOB.cached_loadout_icons[cache_key], "loadout_select_[icon_counter].png")
 					
 					var/display_name = item.name
 					var/cost_text = ""
@@ -1861,7 +1861,6 @@ GLOBAL_LIST_EMPTY(cached_loadout_icons)
 					
 					html += {"
 						<div class='item-entry [locked_class]' data-name='[display_name]' [onclick_action]>
-							<img class='item-icon' src='loadout_select_[icon_counter].png' onerror='this.style.display=\"none\"'>
 							<div class='item-info'>
 								<div class='item-name'>[display_name] [cost_text]</div>
 								[lock_indicator]
