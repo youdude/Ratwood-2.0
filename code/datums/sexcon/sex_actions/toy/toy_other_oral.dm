@@ -2,11 +2,12 @@
 	name = "Use toy on their mouth"
 	category = SEX_CATEGORY_PENETRATE
 	target_sex_part = SEX_PART_JAWS
+	var/pegging = FALSE
 
 /datum/sex_action/toy_other_oral/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-	if(!get_dildo_in_either_hand(user))
+	if(!pegging && !get_dildo_in_either_hand(user) || pegging && !get_dildo_on_belt(user))
 		return FALSE
 	return TRUE
 
@@ -15,12 +16,12 @@
 		return FALSE
 	if(!check_location_accessible(user, target, BODY_ZONE_PRECISE_MOUTH))
 		return FALSE
-	if(!get_dildo_in_either_hand(user))
+	if(!pegging && !get_dildo_in_either_hand(user) || pegging && !get_dildo_on_belt(user))
 		return FALSE
 	return TRUE
 
 /datum/sex_action/toy_other_oral/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	var/obj/item/dildo = get_dildo_in_either_hand(user)
+	var/obj/item/dildo = pegging ? get_dildo_in_either_hand(user) : get_dildo_on_belt(user)
 	user.visible_message(span_warning("[user] forces [target]'s to gobble on \the [dildo]..."))
 
 /datum/sex_action/toy_other_oral/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -28,10 +29,16 @@
 	target.make_sucking_noise()
 
 /datum/sex_action/toy_other_oral/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	var/obj/item/dildo = get_dildo_in_either_hand(user)
+	var/obj/item/dildo = pegging ? get_dildo_in_either_hand(user) : get_dildo_on_belt(user)
 	user.visible_message(span_warning("[user] pulls \the [dildo] from [target]'s mouth."))
 
 /datum/sex_action/toy_other_oral/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(target.sexcon.finished_check())
 		return TRUE
 	return FALSE
+
+/datum/sex_action/toy_other_oral/pegging
+	name = "Peg their mouth"
+	category = SEX_CATEGORY_PENETRATE
+	target_sex_part = SEX_PART_JAWS
+	pegging = TRUE
