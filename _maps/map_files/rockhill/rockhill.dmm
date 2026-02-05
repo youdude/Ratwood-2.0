@@ -12260,7 +12260,6 @@
 /area/rogue/outdoors/bograt/above)
 "dJP" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
-	despawn_on_idle = 0;
 	faction = list("infernal","neutral")
 	},
 /turf/open/floor/rogue/volcanic{
@@ -12999,9 +12998,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach/harbor)
 "dVP" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
-	wander = 0
-	},
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/wizarddungeon)
 "dWa" = (
@@ -24724,6 +24721,13 @@
 	},
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors/town/warehouse)
+"hsP" = (
+/obj/structure/fluff/walldeco/steward{
+	name = "Steward";
+	pixel_x = -3
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/town/rockhill)
 "hsR" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/structure/fermentation_keg/water,
@@ -38125,9 +38129,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/bath)
 "lDK" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher{
-	wander = 0
-	},
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher,
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors/town/fire_chamber{
 	ambientsounds = list('sound/ambience/hell1.ogg');
@@ -47651,9 +47653,7 @@
 /area/rogue/indoors/town/church)
 "oAP" = (
 /obj/structure/fluff/walldeco/chains,
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
-	wander = 0
-	},
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/wizarddungeon)
 "oAU" = (
@@ -48002,9 +48002,7 @@
 /turf/open/water/sewer,
 /area/rogue/under/town/sewer)
 "oGS" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher{
-	wander = 0
-	},
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/watcher,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/wizarddungeon)
 "oGT" = (
@@ -51012,9 +51010,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/town/rockhill)
 "pBk" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend{
-	wander = 0
-	},
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/town/fire_chamber{
 	ambientsounds = list('sound/ambience/hell1.ogg');
@@ -64360,8 +64356,7 @@
 /area/rogue/outdoors/bograt/safe)
 "tLo" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
-	faction = list("infernal","neutral");
-	wander = 0
+	faction = list("infernal","neutral")
 	},
 /turf/open/floor/rogue/greenstone/runed,
 /area/rogue/indoors/town/fire_chamber{
@@ -67202,9 +67197,7 @@
 	name = "Mage's Tower"
 	})
 "uIv" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp{
-	wander = 0
-	},
+/mob/living/simple_animal/hostile/retaliate/rogue/infernal/imp,
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors/town/fire_chamber{
 	ambientsounds = list('sound/ambience/hell1.ogg');
@@ -76046,18 +76039,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/rtfield/rockhill/above)
 "xwq" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound{
-	wander = 0
-	},
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors/town/fire_chamber{
-	ambientsounds = list('sound/ambience/hell1.ogg');
-	droning_sound = 'sound/music/area/inferno.ogg';
-	droning_sound_dusk = null;
-	droning_sound_night = null;
-	first_time_text = "Another Place";
-	name = "firezone"
-	})
+/obj/machinery/light/roguestreet/orange/walllamp,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/town/rockhill)
 "xwt" = (
 /obj/structure/fluff/railing/border{
 	pixel_y = -8
@@ -86075,7 +86059,7 @@ gjv
 bqk
 bqk
 bqk
-xwq
+xUK
 ljj
 bqk
 jFM
@@ -87806,7 +87790,7 @@ fTZ
 dOj
 fTZ
 bqk
-xwq
+xUK
 bqk
 ljj
 usF
@@ -363901,7 +363885,7 @@ rwF
 uYU
 dtp
 pfp
-xAt
+xwq
 xAt
 eoy
 wbg
@@ -365197,7 +365181,7 @@ rBl
 bbe
 wrj
 wrj
-xAt
+xwq
 xAt
 eoy
 wbg
@@ -365628,7 +365612,7 @@ wrj
 gPy
 gPy
 wrj
-xAt
+hsP
 xAt
 xAt
 eoy
