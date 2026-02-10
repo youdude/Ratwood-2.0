@@ -17,17 +17,17 @@
 
 /datum/supply_pack/rogue/luxury/shhig
 	name = "Shhig brand zigs (pack of 6)"
-	cost = 50
+	cost = 40
 	contains = list(/obj/item/storage/fancy/shhig)
 
 /datum/supply_pack/rogue/luxury/ozium
 	name = "Ozium"
-	cost = 5
+	cost = 8
 	contains = list(/obj/item/reagent_containers/powder/ozium)
 
 /datum/supply_pack/rogue/luxury/moondust
 	name = "Moon Dust"
-	cost = 10
+	cost = 15
 	contains = list(/obj/item/reagent_containers/powder/moondust)
 
 /datum/supply_pack/rogue/luxury/spice
@@ -52,7 +52,7 @@
 
 /datum/supply_pack/rogue/luxury/silverdagger
 	name = "Silver Dagger"
-	cost = 250 //Note that the Merchant's abode always spawns with a free silver dagger.
+	cost = 150 //Silver weapons have been made much less powerful but much more common over time
 	contains = list(/obj/item/rogueweapon/huntingknife/idagger/silver)
 
 /datum/supply_pack/rogue/luxury/nomag
