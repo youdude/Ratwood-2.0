@@ -40,7 +40,7 @@
 
 /datum/supply_pack/rogue/Things/scroll
 	name = "Scroll"
-	cost = 5 // Because you don't always have access to Zennies, you trade them away for favor, remember?
+	cost = 5
 	contains = list(/obj/item/paper/scroll)
 
 /datum/supply_pack/rogue/Things/hardtack
@@ -85,8 +85,23 @@
 
 /datum/supply_pack/rogue/Things/soap
 	name = "Bar of Soap"
-	cost = 10 // Hahaha why not
+	cost = 10	// Hahaha why not
 	contains = list(/obj/item/soap)
+
+/datum/supply_pack/rogue/Things/zenarii
+	name = "Five Zenarii"
+	cost = 60
+	contains = list(/obj/item/roguecoin/gold = 5)
+
+/datum/supply_pack/rogue/Things/ziliqua
+	name = "Five Ziliqua"
+	cost = 35
+	contains = list(/obj/item/roguecoin/silver = 5)
+
+/datum/supply_pack/rogue/Things/zennies
+	name = "Five Zennies"
+	cost = 10
+	contains = list(/obj/item/roguecoin/copper = 5)
 
 /////////////
 // POTIONS //
@@ -170,11 +185,6 @@
 	cost =	60
 	contains = list(/obj/item/bomb)
 
-/datum/supply_pack/rogue/Things/blackpowder_stick
-    name = "Blackpowder stick"
-    cost = 80
-    contains = list(/obj/item/tntstick)
-
 /datum/supply_pack/rogue/Things/leathercollar
 	name = "Leather Collar"
 	cost =	20
@@ -187,7 +197,7 @@
 
 /datum/supply_pack/rogue/Things/lockpicks
 	name = "Lockpicks"
-	cost = 25 // More expensive if your class doesn't have them.
+	cost = 25	// More expensive if your class doesn't have them.
 	contains = list(/obj/item/lockpickring/mundane)
 
 /datum/supply_pack/rogue/Things/prarml
@@ -232,17 +242,17 @@
 
 /datum/supply_pack/rogue/Things/grapplinghook
 	name =	"Grappling Hook"
-	cost =	800 // You're better off stealing this.
+	cost =	1000	// You're better off stealing this.
 	contains = list(/obj/item/grapplinghook)
 
 /datum/supply_pack/rogue/Things/climbing_gear
 	name = "Climbing Gear"
-	cost = 600 // Really fucking good, you can drop down z-levels and hang there. 
+	cost = 800		// Really fucking good, you can drop down z-levels and hang there. 
 	contains = list(/obj/item/clothing/climbing_gear)
 
-/datum/supply_pack/rogue/Things/pick	//Also a thing you can just kinda find, though moderately useful.
+/datum/supply_pack/rogue/Things/pick
 	name = "Iron Pick"
-	cost = 12
+	cost = 12		// Also a thing you can just kinda find, though moderately useful.
 	contains = list(/obj/item/rogueweapon/pick)
 
 /datum/supply_pack/rogue/Things/pick/steel

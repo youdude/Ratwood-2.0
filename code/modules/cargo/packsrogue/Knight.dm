@@ -306,16 +306,6 @@
 // UTILITY //
 /////////////
 
-/datum/supply_pack/rogue/Knight/garrote
-	name = "Garrote"
-	cost = 15
-	contains = list(/obj/item/inqarticles/garrote/nonpsy)
-
-/datum/supply_pack/rogue/Knight/blackbag
-	name = "Blackbag"
-	cost = 20
-	contains = list(/obj/item/clothing/head/inqarticles/blackbag/nonpsy)
-
 /datum/supply_pack/rogue/Knight/saiga
 	name = "Saiga Buck"
 	cost = 100
