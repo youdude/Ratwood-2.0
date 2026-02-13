@@ -132,7 +132,7 @@
 	qdel(src)
 
 /obj/structure/glowshroom/dendorite
-	var/timeleft = null //5 MINUTES //balancing factor no longer relevant
+	var/timeleft = 10 MINUTES
 
 /obj/structure/glowshroom/dendorite/Initialize()
 	. = ..()
