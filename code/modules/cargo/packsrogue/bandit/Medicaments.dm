@@ -75,6 +75,11 @@
 // PROSTHETICS //
 /////////////////
 
+/datum/supply_pack/rogue/Medicaments/bronzeprosthetic
+	name = "Bronze Prosthetic"
+	cost = 150
+	contains = list(/obj/item/contraption/bronzeprosthetic)
+
 /datum/supply_pack/rogue/Medicaments/prarml
 	name = "Prosthetic Wood Arm (L)"
 	cost = 40
@@ -94,23 +99,3 @@
 	name = "Prosthetic Wood Leg (R)"
 	cost = 20
 	contains = list(/obj/item/bodypart/r_leg/prosthetic)
-
-/datum/supply_pack/rogue/Medicaments/prarmlbrz
-	name = "Prostethic Bronze Arm (L)"
-	cost = 200
-	contains = list(/obj/item/bodypart/l_arm/prosthetic/bronzeleft)
-
-/datum/supply_pack/rogue/Medicaments/prarmrbrz
-	name = "Prostethic Bronze Arm (R)"
-	cost = 200
-	contains = list(/obj/item/bodypart/r_arm/prosthetic/bronzeright)
-
-/datum/supply_pack/rogue/Medicaments/prleglbrz
-	name = "Prostethic Bronze Leg (L)"
-	cost = 100
-	contains = list(/obj/item/bodypart/l_leg/prosthetic/bronzeleft)
-
-/datum/supply_pack/rogue/Medicaments/prlegrbrz
-	name = "Prostethic Bronze Leg (R)"
-	cost = 100
-	contains = list(/obj/item/bodypart/r_leg/prosthetic/bronzeright)
