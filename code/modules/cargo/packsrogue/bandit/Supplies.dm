@@ -105,7 +105,7 @@
 
 /datum/supply_pack/rogue/Supplies/daggersil
 	name = "Silver Dagger"
-	cost = 40
+	cost = 80
 	contains = list(/obj/item/rogueweapon/huntingknife/idagger/silver)
 
 /datum/supply_pack/rogue/Supplies/Waterskin
@@ -117,6 +117,11 @@
 	name = "Flint"
 	cost = 5
 	contains = list(/obj/item/flint)
+
+/datum/supply_pack/rogue/Supplies/chalk
+	name = "Stick Of Chalk"
+	cost = 5
+	contains = list(/obj/item/chalk)
 
 /datum/supply_pack/rogue/Supplies/bedroll
 	name = "Bedroll"

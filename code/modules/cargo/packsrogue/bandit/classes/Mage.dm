@@ -150,12 +150,22 @@
 
 /datum/supply_pack/rogue/Mage/sdagger
 	name = "Silver Dagger"
-	cost = 100
+	cost = 60
 	contains = list(/obj/item/rogueweapon/huntingknife/idagger/silver)
+
+/datum/supply_pack/rogue/Mage/asdagger
+	name = "Arcyne Silver Dagger"
+	cost = 120
+	contains = list(/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne)
 
 ///////////
 // MAGIC //
 ///////////
+
+/datum/supply_pack/rogue/Mage/magebagempty
+	name = "Empty Mage Bag"
+	cost = 5
+	contains = list(/obj/item/storage/magebag)
 
 /datum/supply_pack/rogue/Mage/unfinbook
 	name = "Unfinished Spellbook"
