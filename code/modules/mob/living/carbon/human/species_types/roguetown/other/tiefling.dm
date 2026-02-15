@@ -136,7 +136,7 @@
 		"Asza" = SKIN_COLOR_ASZA,
 		"Krizzsha" = SKIN_COLOR_KRIZZSHA,
 		"Tosiz" = SKIN_COLOR_TOSIZ,
-		"Velothel" = SKIN_COLOR_VELOTHEL
+		"Velothel" = SKIN_COLOR_VELOTHEL,
 		"Ashol" = SKIN_COLOR_ASHOL
 	)
 
