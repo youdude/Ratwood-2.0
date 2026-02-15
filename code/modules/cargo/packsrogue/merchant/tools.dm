@@ -203,7 +203,7 @@
 /datum/supply_pack/rogue/tools/alch_bottlenormal
 	name = "Bottle"
 	cost = 3
-	contains = list(/obj/item/reagent_containers/glass/bottle/alchemical,)
+	contains = list(/obj/item/reagent_containers/glass/bottle,)
 
 /datum/supply_pack/rogue/tools/alch_bottlesnormal
 	name = "Bulk Bottles" //
