@@ -531,6 +531,13 @@
 	var/river_processing
 	swimdir = TRUE
 
+/turf/open/water/river/muddy
+	water_color = "#705a43"
+	water_reagent = /datum/reagent/water/gross
+	icon_state = "rockwd"
+	name = "muddy river"
+	desc = "A river of thick, silt-laden sludge lurches languidly through the land."
+
 /turf/open/water/river/flow
 	icon_state = "rockwd"
 
